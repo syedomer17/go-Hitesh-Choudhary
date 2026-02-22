@@ -14,4 +14,9 @@ func main(){
 	canDeletePost := isAdmin || (isLoggedIn && hasSubscription)
 
 	fmt.Println(canOpenDashboard, canDeletePost)
+
+	age := 25 
+	isAult := age > 18 
+
+	fmt.Println(isAult)
 }
