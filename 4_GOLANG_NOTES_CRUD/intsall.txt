@@ -1,0 +1,5 @@
+go get github.com/gin-gonic/gin@latest
+go get github.com/joho/godotenv 
+go get go.mongodb.org/mongo-driver/mongo
+go get go.mongodb.org/mongo-driver/v2
+go install github.com/air-verse/air@latest
