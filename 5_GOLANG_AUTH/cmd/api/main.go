@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	httpserver "go-auth/internal"
 	"go-auth/internal/app"
+	httpserver "go-auth/internal/httpserver"
 	"log"
 	"net/http"
 	"time"
@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	// this is a root context 
+	// this is a root context
 	ctx := context.Background()
 
 	a, err := app.New(ctx)
@@ -21,18 +21,18 @@ func main() {
 		log.Fatalf("StartUp failed: %v", err)
 	}
 
-	defer func(){
+	defer func() {
 		if err := a.Close(ctx); err != nil {
 			log.Printf("App close failed: %v", err)
 		}
 	}()
-	
+
 	router := httpserver.NewRouter()
 
 	// standard go type that runs a http server
 	server := &http.Server{
-		Addr: ":5000",
-		Handler: router,
+		Addr:              ":5000",
+		Handler:           router,
 		ReadHeaderTimeout: 5 * time.Second,
 	}
 
@@ -45,5 +45,5 @@ func main() {
 		}
 		log.Fatalf("Server error: %v", err)
 	}
-	
+
 }
