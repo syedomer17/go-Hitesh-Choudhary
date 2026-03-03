@@ -1,15 +1,32 @@
 package main
 
 import (
+	"context"
 	httpserver "go-auth/internal"
+	"go-auth/internal/app"
 	"log"
 	"net/http"
 	"time"
-
 	// "github.com/gin-gonic/gin"
 )
 
 func main() {
+
+	// this is a root context 
+	ctx := context.Background()
+
+	a, err := app.New(ctx)
+
+	if err != nil {
+		log.Fatalf("StartUp failed: %v", err)
+	}
+
+	defer func(){
+		if err := a.Close(ctx); err != nil {
+			log.Printf("App close failed: %v", err)
+		}
+	}()
+	
 	router := httpserver.NewRouter()
 
 	// standard go type that runs a http server

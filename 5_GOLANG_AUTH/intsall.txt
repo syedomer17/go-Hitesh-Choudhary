@@ -3,3 +3,5 @@ go get github.com/joho/godotenv
 go get go.mongodb.org/mongo-driver/mongo
 go get go.mongodb.org/mongo-driver/v2
 go install github.com/air-verse/air@latest
+go get github.com/golang-jwt/jwt/v5
+go get golang.org/x/crypto/bcrypt
